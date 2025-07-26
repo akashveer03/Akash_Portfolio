@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash V - Front-End Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: #667eea; }
+            51%, 100% { border-color: transparent; }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            to { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+        
+        .profile-placeholder {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800">Akash V</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-purple-600 transition-colors">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-purple-600 transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-purple-600 transition-colors">Projects</a>
+                    <a href="#education" class="text-gray-600 hover:text-purple-600 transition-colors">Education</a>
+                    <a href="#contact" class="text-gray-600 hover:text-purple-600 transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block text-gray-600 hover:text-purple-600 py-2">Home</a>
+                <a href="#about" class="block text-gray-600 hover:text-purple-600 py-2">About</a>
+                <a href="#skills" class="block text-gray-600 hover:text-purple-600 py-2">Skills</a>
+                <a href="#projects" class="block text-gray-600 hover:text-purple-600 py-2">Projects</a>
+                <a href="#education" class="block text-gray-600 hover:text-purple-600 py-2">Education</a>
+                <a href="#contact" class="block text-gray-600 hover:text-purple-600 py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-20 relative overflow-hidden" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);">
+        <!-- Animated background particles -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute w-4 h-4 bg-cyan-400/30 rounded-full animate-bounce" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="absolute w-6 h-6 bg-purple-400/20 rounded-full animate-bounce" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
+            <div class="absolute w-3 h-3 bg-pink-400/40 rounded-full animate-bounce" style="top: 40%; left: 70%; animation-delay: 2s;"></div>
+            <div class="absolute w-5 h-5 bg-blue-400/25 rounded-full animate-bounce" style="top: 80%; left: 20%; animation-delay: 1.5s;"></div>
+            <div class="absolute w-2 h-2 bg-indigo-400/35 rounded-full animate-bounce" style="top: 30%; left: 90%; animation-delay: 0.5s;"></div>
+            <!-- Additional floating elements -->
+            <div class="absolute w-8 h-8 border border-cyan-400/20 rounded-full animate-pulse" style="top: 15%; right: 15%; animation-delay: 3s;"></div>
+            <div class="absolute w-12 h-12 border border-purple-400/15 rounded-full animate-pulse" style="bottom: 20%; left: 15%; animation-delay: 2s;"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-4">
+                        Hi, I'm <span class="typing-animation">Akash V</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-light mb-6 text-purple-100">Front-End Developer</h2>
+                    <div class="flex items-center mb-4 text-purple-100">
+                        <i class="fas fa-map-marker-alt mr-3"></i>
+                        <span>Mayiladuthurai, TN, India</span>
+                    </div>
+                    <div class="flex items-center mb-8 text-purple-100">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <a href="mailto:abhishekakash141@gmail.com" class="hover:text-white transition-colors">abhishekakash141@gmail.com</a>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors">
+                            Get In Touch
+                        </a>
+                        <a href="#projects" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                            View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div class="relative w-80 h-80 rounded-full shadow-2xl overflow-hidden border-4 border-white/30 hover:scale-105 transition-transform duration-300 floating pulse-glow">
+                        <!-- Replace the src with your actual profile picture URL -->
+                        <img src="https://via.placeholder.com/320x320/667eea/ffffff?text=Upload+Your+Photo" 
+                             alt="Akash V Profile Picture" 
+                             class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <!-- Fallback placeholder -->
+                        <div class="profile-placeholder w-full h-full absolute inset-0 flex items-center justify-center" style="display: none;">
+                            <img src="picmy.png" alt="">
+                        </div>
+                        <!-- Overlay effect -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-fade">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mb-6"></div>
+                        <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                            I'm Akash, a dedicated front-end developer who enjoys crafting intuitive and efficient web applications. With hands-on experience in building lightweight tools using HTML, CSS, JavaScript, and React, I aim to simplify user experiences through elegant interfaces.
+                        </p>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            I'm also expanding my backend skills using Flask and constantly exploring new technologies to level up my development journey.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-cyan-400/50 transition-all">
+                            <i class="fas fa-code text-3xl text-cyan-400 mb-4"></i>
+                            <h3 class="font-semibold text-white mb-2">Clean Code</h3>
+                            <p class="text-sm text-gray-400">Writing maintainable and efficient code</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-purple-400/50 transition-all">
+                            <i class="fas fa-mobile-alt text-3xl text-purple-400 mb-4"></i>
+                            <h3 class="font-semibold text-white mb-2">Responsive</h3>
+                            <p class="text-sm text-gray-400">Mobile-first design approach</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-pink-400/50 transition-all">
+                            <i class="fas fa-rocket text-3xl text-pink-400 mb-4"></i>
+                            <h3 class="font-semibold text-white mb-2">Performance</h3>
+                            <p class="text-sm text-gray-400">Optimized for speed and efficiency</p>
+                        </div>
+                        <div class="text-center p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 hover:border-blue-400/50 transition-all">
+                            <i class="fas fa-users text-3xl text-blue-400 mb-4"></i>
+                            <h3 class="font-semibold text-white mb-2">User-Centric</h3>
+                            <p class="text-sm text-gray-400">Focused on user experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);"
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-fade">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Skills & Technologies</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-6 text-cyan-400">Frontend</h3>
+                        <div class="space-y-3">
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-orange-400/50">
+                                <i class="fab fa-html5 text-orange-500 mr-2"></i>HTML
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-blue-400/50">
+                                <i class="fab fa-css3-alt text-blue-500 mr-2"></i>CSS
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-yellow-400/50">
+                                <i class="fab fa-js-square text-yellow-500 mr-2"></i>JavaScript
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-cyan-400/50">
+                                <i class="fab fa-react text-blue-400 mr-2"></i>React.js
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-6 text-purple-400">Backend</h3>
+                        <div class="space-y-3">
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-blue-400/50">
+                                <i class="fab fa-python text-blue-600 mr-2"></i>Python
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-gray-400/50">
+                                <i class="fas fa-flask text-gray-400 mr-2"></i>Flask
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-6 text-pink-400">Tools</h3>
+                        <div class="space-y-3">
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-orange-400/50">
+                                <i class="fab fa-git-alt text-orange-600 mr-2"></i>Git
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-gray-400/50">
+                                <i class="fab fa-github text-gray-400 mr-2"></i>GitHub
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-purple-400/50">
+                                <i class="fab fa-figma text-purple-500 mr-2"></i>Figma
+                            </div>
+                            <div class="skill-tag bg-gray-800/60 backdrop-blur-sm px-4 py-3 rounded-lg shadow-sm border border-gray-700/50 text-white hover:border-blue-400/50">
+                                <i class="fas fa-palette text-blue-500 mr-2"></i>Canva
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-semibold mb-6 text-blue-400">Certifications</h3>
+                        <div class="bg-gray-800/60 backdrop-blur-sm p-4 rounded-lg shadow-sm border border-gray-700/50 hover:border-yellow-400/50 transition-all">
+                            <i class="fas fa-certificate text-yellow-500 text-2xl mb-3"></i>
+                            <p class="text-sm font-medium text-white mb-1">Python Web Development</p>
+                            <p class="text-xs text-gray-400">ICT Academy & Infosys (2024)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);"
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-fade">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Featured Projects</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="card-hover bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-700/50 hover:border-cyan-400/50">
+                        <div class="h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-file-pdf text-6xl text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">DiviDoc</h3>
+                            <p class="text-gray-300 mb-4">Online PDF extractor tool for efficient document processing and text extraction.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-xs">HTML</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs">CSS</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-xs">JS</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Flask</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="https://divi-doc.vercel.app" target="_blank" class="flex-1 bg-gradient-to-r from-cyan-500 to-purple-600 text-white text-center py-2 rounded-lg hover:from-cyan-600 hover:to-purple-700 transition-all">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/akashveer03/DiviDoc" target="_blank" class="flex-1 border border-gray-600 text-gray-300 text-center py-2 rounded-lg hover:bg-gray-700/50 hover:border-gray-500 transition-colors">
+                                    <i class="fab fa-github mr-2"></i>Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="card-hover bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-700/50 hover:border-pink-400/50">
+                        <div class="h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-compress-alt text-6xl text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">Img-Resizely</h3>
+                            <p class="text-gray-300 mb-4">Online image compressor for optimizing images while maintaining quality.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs border border-orange-500/30">HTML</span>
+                                <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs border border-blue-500/30">CSS</span>
+                                <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs border border-yellow-500/30">JavaScript</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="https://akashveer03.github.io/Img-Resizely/" target="_blank" class="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-center py-2 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/akashveer03/Img-Resizely" target="_blank" class="flex-1 border border-gray-600 text-gray-300 text-center py-2 rounded-lg hover:bg-gray-700/50 hover:border-gray-500 transition-colors">
+                                    <i class="fab fa-github mr-2"></i>Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="card-hover bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-700/50 hover:border-blue-400/50">
+                        <div class="h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fas fa-exchange-alt text-6xl text-white"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-white">MoneyVerse</h3>
+                            <p class="text-gray-300 mb-4">Real-time currency converter with live exchange rates and multiple currencies.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs border border-orange-500/30">HTML</span>
+                                <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs border border-blue-500/30">CSS</span>
+                                <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs border border-yellow-500/30">JavaScript</span>
+                            </div>
+                            <div class="flex space-x-3">
+                                <a href="https://akashveer03.github.io/Currency-converter-moneyverse/" target="_blank" class="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-center py-2 rounded-lg hover:from-blue-600 hover:to-cyan-600 transition-all">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/akashveer03/Currency-convertor-moneyverse" target="_blank" class="flex-1 border border-gray-600 text-gray-300 text-center py-2 rounded-lg hover:bg-gray-700/50 hover:border-gray-500 transition-colors">
+                                    <i class="fab fa-github mr-2"></i>Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-fade">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Education</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-gray-800/60 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-gray-700/50 hover:border-blue-400/50 transition-all">
+                        <div class="flex items-start space-x-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-white mb-2">AVC College of Engineering</h3>
+                                <p class="text-lg text-blue-400 font-semibold mb-2">B.Tech – Information Technology</p>
+                                <div class="flex flex-col md:flex-row md:items-center md:space-x-6 text-gray-300">
+                                    <div class="flex items-center mb-2 md:mb-0">
+                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                        <span>2021 – 2025</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-star mr-2"></i>
+                                        <span>CGPA: 8.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="py-20" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="section-fade text-center">
+                <h2 class="text-4xl font-bold mb-8 text-white">Resume</h2>
+                <div class="max-w-2xl mx-auto mb-12">
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">Download my resume to learn more about my experience, qualifications, and technical expertise in front-end development.</p>
+                    
+                    <div class="bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-400/50 transition-all">
+                        <div class="flex flex-col items-center space-y-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-file-pdf text-3xl text-white"></i>
+                            </div>
+                            
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold text-white mb-2">Akash V - Resume</h3>
+                                <p class="text-gray-400 text-sm">Front-End Developer Portfolio</p>
+                            </div>
+                            
+                            <a href="#" onclick="alert('Please upload your resume PDF and replace this link')" class="inline-flex items-center bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-cyan-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25">
+                                <i class="fas fa-download mr-3"></i>
+                                Download Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="section-fade">
+                <h2 class="text-4xl font-bold mb-8 text-white">Let's Connect</h2>
+                <p class="text-xl text-purple-100 mb-12">Ready to bring your ideas to life? Let's work together!</p>
+                
+                <div class="flex justify-center space-x-8 mb-12">
+                    <a href="https://github.com/akashveer03" target="_blank" class="w-16 h-16 bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-full flex items-center justify-center hover:bg-gray-700/60 hover:border-gray-500/50 transition-all">
+                        <i class="fab fa-github text-2xl text-white"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/akash-veerasamy-366755286" target="_blank" class="w-16 h-16 bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-full flex items-center justify-center hover:bg-blue-600/20 hover:border-blue-400/50 transition-all">
+                        <i class="fab fa-linkedin text-2xl text-blue-400"></i>
+                    </a>
+                    <a href="mailto:abhishekakash141@gmail.com" class="w-16 h-16 bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-full flex items-center justify-center hover:bg-purple-600/20 hover:border-purple-400/50 transition-all">
+                        <i class="fas fa-envelope text-2xl text-purple-400"></i>
+                    </a>
+                </div>
+                
+                <div class="text-purple-100">
+                    <p class="mb-2">
+                        <i class="fas fa-envelope mr-2"></i>
+                        abhishekakash141@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        Mayiladuthurai, TN, India
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p>&copy; 2024 Akash V. All rights reserved. Built with passion and code.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with fade animation
+        document.querySelectorAll('.section-fade').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Typing animation for hero title
+        const typingElement = document.querySelector('.typing-animation');
+        if (typingElement) {
+            const text = 'Akash V';
+            let index = 0;
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    typingElement.textContent = text.slice(0, index + 1);
+                    index++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+            
+            // Start typing animation after a short delay
+            setTimeout(() => {
+                typingElement.textContent = '';
+                typeWriter();
+            }, 1000);
+        }
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9644e13aa44a858a',t:'MTc1MzM3NTQ0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
